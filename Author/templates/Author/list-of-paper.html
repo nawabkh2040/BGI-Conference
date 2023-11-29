@@ -1,0 +1,126 @@
+{% extends 'Author/Author_base.html' %}
+{% block title %}List of Papers{% endblock title %}
+{% block body %}
+
+<div class="container">
+     {% if paper %}
+          <div class="container my-4">
+               <h2 style="text-align: center;">Submitted Papers</h2>
+               <div class="table-responsive">
+                    <table class="table table-bordered mx-auto">
+                         <thead class="thead-dark">
+                         <tr>
+                              <th scope="col" style="width: 20%;" >Paper ID</th>
+                              <th scope="col" style="width: 20%;" >Paper Title</th>
+                              <th scope="col" style="width: 20%;" >Conference Name</th>
+                              {% comment %} <th scope="col" style="width: 20%;" >Version</th> {% endcomment %}
+                              <th scope="col" style="width: 20%;" >Auth Name</th>
+                              <th scope="col" style="width: 20%;" >Keyword</th>
+                              <th scope="col" style="width: 20%;" >Abstract</th>
+                              <th scope="col" style="width: 10%;" >Paper </th>
+                              {% comment %} <th scope="col" style="width: 20%;" >Date Of Submit</th> {% endcomment %}
+                              <th scope="col">Status</th>
+                              <th scope="col">comments </th>
+                              <th scope="col">Resubmit</th>
+                         </tr>
+                         </thead>
+                         <tbody>
+                         {% for paper in paper %}
+                              <tr>
+                                   <th scope="row">P_{{ paper.id|stringformat:"003d" }}</th>
+                                   <td>{{paper.title}}</td>
+                                   <td>{{paper.conference}}</td>
+                                   {% comment %} <th>v{{paper.version}}</th> {% endcomment %}
+                                   <td>{{paper.author_name}}</td>
+                                   <td>{{paper.paper_keyword}}</td>
+                                   <td>{{paper.paper_description}}</td>
+                                   <td><a href="/media/{{paper.paper_upload}}"style="width: 10%;">{{paper.paper_upload}}</a></td>
+                                   {% comment %} <td>{{paper.paper_start_date}}</td> {% endcomment %}
+                                   <td style="text-transform: capitalize;" >{{paper.status}}</td>
+                                   <td>
+                                        {% for name, review_data in paper.reviewer_comments.items %}
+                                             {% if review_data.comment %}
+                                             <div class="reviewer-comment">
+                                                  <p>Reviewer: </p>
+                                                  <p>Comment: {{ review_data.comment }}</p>
+                                                  <p>Status: {{ review_data.reviewer_status }}</p>
+                                             </div>
+                                             {% else %}
+                                             <p>No comments present</p>
+                                             {% endif %}
+                                        {% endfor %}
+                                   </td>
+                                   <td><a href="{% url 'resubmit' paper_id=paper.id %}"><button class="btn btn-primary">Resubmit</button></a></td>
+                              </tr>
+                         {% endfor %}
+                         </tbody>
+                    </table>
+               </div>
+          </div>
+     {% else %}
+          <h4 class="my-4" style="text-align: center;color: red;">No Paper Submitted In This Conference</h4>
+     {% endif %}
+     {% if Resubmited_paper %}
+     <div class="container my-4">
+          <h2 style="text-align: center;">Resubmitted Papers</h2>
+          <div class="table-responsive">
+               <table class="table table-bordered mx-auto">
+                    <thead class="thead-dark">
+                    <tr>
+                         <th scope="col">Paper ID</th>
+                         <th scope="col">Paper Title</th>
+                         <th scope="col">Conference Name</th>
+                         <th scope="col">Version</th>
+                         <th scope="col">Auth Name</th>
+                         <th scope="col">Keyword</th>
+                         <th scope="col">Abstract</th>
+                         <th scope="col">Paper </th>
+                         <th scope="col">Status</th>
+                         <th scope="col">comments </th>
+                         <th scope="col">Date Of Submit</th>
+
+                         {% comment %} <th scope="col">Resubmit</th> {% endcomment %}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for Resubmited_paper in Resubmited_paper %}
+                         <tr>
+                              <th scope="row">ABC{{ Resubmited_paper.paper_id|stringformat:"003d" }}</th>
+                              <td>{{Resubmited_paper.title}}</td>
+                              <td>{{Resubmited_paper.conference}}</td>
+                              <th>v{{Resubmited_paper.version}}</th>
+                              <td>{{Resubmited_paper.author_name}}</td>
+                              <td>{{Resubmited_paper.paper_keyword}}</td>
+                              <td>{{Resubmited_paper.paper_description}}</td>
+                              <td><a href="/media/{{Resubmited_paper.paper_upload}} ">{{Resubmited_paper.paper_upload}}</a> </td>
+                              {% comment %} <td>{{Resubmsuccess_messageited_paper.start_date}}</td> {% endcomment %}
+                              <td style="text-transform: capitalize;" >{{Resubmited_paper.status}}</td>
+                              <td>
+                                   {% for name, review_data in Resubmited_paper.reviewer_comments.items %}
+                                             {% if review_data.comment %}
+                                             <div class="reviewer-comment">
+                                                  <p>Reviewer</p>
+                                                  <p>Comment: {{ review_data.comment }}</p>
+                                                  <p>Status: {{ review_data.reviewer_status }}</p>
+                                             </div>
+                                             {% else %}
+                                             <p>No comments present</p>
+                                             {% endif %}
+                                        {% endfor %}
+                              </td>
+                              <td>{{Resubmited_paper.paper_start_date}}</td>
+
+                              {% comment %} <td><a href="{% url 're_resubmit' re_paper_id=Resubmited_paper.id %}"><button class="btn btn-primary">Resubmit</button></a></td> {% endcomment %}
+                         </tr>
+                    {% endfor %}
+                    </tbody>
+               </table>
+          </div>
+     </div>
+     {% endif %}
+     <div class="mt-4">
+          <a class="btn btn-secondary" href="/Author/dashboard">Back</a>
+      </div>
+</div>
+
+{% endblock body %}

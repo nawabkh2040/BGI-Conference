@@ -1,0 +1,9 @@
+{% autoescape off %}
+     WellCome To Conference
+
+     Hello Reviewer {{name}} !!
+     
+     Thank you for registering to our conference as a Reviewer. Please click on the link below to confirm your email address and activate your account:
+
+     Confirmation link :- http://{{domain}}{% url 'activate-reviewer' uidb64=uidb64 token=token %}
+{% endautoescape %}

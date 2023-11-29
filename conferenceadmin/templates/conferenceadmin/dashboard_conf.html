@@ -1,0 +1,46 @@
+{% extends 'conferenceadmin/conference-base.html' %}
+{% block title %}Dashboard {% endblock title %}
+{% block body %}
+<div class="container my-4" style="text-align: center;" >
+     <h1 class="text-uppercase" >WelCome Conference Admin {{user.name}} </h1>
+</div>
+<div class="container my-4">    
+     <table class="table table-bordered">
+          <thead>
+          <tr>
+               <th scope="col">S.No</th>
+               <th scope="col">List</th>
+               <th scope="col">Create</th>
+               <th scope="col">View</th>
+          </tr>
+          </thead>
+          <tbody>
+               <tr>
+                    <th scope="row">1</th>
+                         <td>Conference</td>
+                         <td>
+                              <a style="text-decoration: none;color: aliceblue;"
+                                   href="/Conference-Admin/create-conference/"><button type="submit" class="btn btn-success">Create Conference</button></a>
+                         </td>
+                         <td>
+                              <a style="text-decoration: none;color: aliceblue;"
+                                   href="/Conference-Admin/list-of-conferences/"><button type="submit" class="btn btn-success">View Conference</button><a>
+                         </td>
+                    </tr>
+                    <tr>
+                    <th scope="row">2</th>
+                    <td>Reviewer's</td>
+                    <td>
+                         <a style="text-decoration: none;color: aliceblue;"
+                              href="/Conference-Admin/list-of-reviewers/"><button type="submit" class="btn btn-success">View Reviewer</button></a>
+                    </td>
+                    <td>
+                         <a style="text-decoration: none;color: aliceblue;"
+                              href="/Conference-Admin/Assign-paper/"><button type="submit" class="btn btn-success">Assign Paper to Reviewer</button></a>
+                    </td>
+               </tr>
+          </tbody>
+     </table>
+</div>
+
+{% endblock body %}

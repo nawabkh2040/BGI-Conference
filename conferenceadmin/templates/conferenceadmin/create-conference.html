@@ -1,0 +1,50 @@
+{% extends 'conferenceadmin/conference-base.html' %}
+{% block title %}Create Conference {% endblock title %}
+{% block body %}
+<div class="container my-4">
+     <form action="/Conference-Admin/create-conference/"  class="col-10 mx-auto card p-3 shadow-lg" method="post">
+          {% csrf_token %}
+             {% if error_message %}
+             <p style="color: rgb(14, 226, 71);">{{ error_message }}</p>
+             {% endif %}
+             {% if success_message %}
+             <p style="color: rgb(33, 130, 39);">{{ success_message }}</p>
+             {% endif %}
+             <div class="topside">
+                     <center>
+                             <h1 class="text-uppercase">Hello {{user.name}} </h1>
+                             <h4>Here You Can Create a Conference</h4>
+                     </center>
+             </div>
+             <div class="mb-3">
+                     <label for="exampleFormControlInput1" class="form-label">Conference Name</label>
+                     <input type="titelbox" name="conference_name" class="form-control" id="exampleFormControlInput1"
+                             placeholder="Enter your paper title">
+             </div>
+             <div class="mb-3">
+                     <label for="exampleFormControlTextarea1" class="form-label">Conference Description</label>
+                     <textarea name="conference_description" class="form-control" id="exampleFormControlTextarea1" rows="3" plaaceholder="What you type "></textarea>
+             </div>
+             <div class="mb-3">
+                <label for="exampleFormControlSelect1" class="form-label">Conference Mode</label>
+                <select class="form-select" name="conference_mode" id="exampleFormControlSelect1">
+                        <option value="online">Online</option>
+                        <option value="offline">Offline</option>
+                        <option value="hybrid">Hybrid</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Venue</label>
+                <input type="titelbox" name="conference_venue" class="form-control" id="exampleFormControlInput1">
+             </div>
+             <div class="mb-3">
+                     <label for="exampleFormControlInput1" class="form-label">End Date</label>
+                     <input class="form-control input-group date" name="conference_end_date" type="date" id="date">
+             </div>
+             <div class="col-auto">
+                     <button type="submit" class="btn btn-success my-3">Submit</button>
+             </div>
+             
+     </form>
+</div>
+{% endblock body %}

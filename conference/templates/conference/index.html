@@ -1,0 +1,170 @@
+{% load static %}
+
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'conference/favicon.ico' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static '/Conference/favicon.ico' %}" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+    <title>Conference</title>
+
+<style>
+        .navbar {
+            background-color: rgba(9, 9, 95, 0.788);
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+        
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        .navbar-logo {
+            width: 40px;
+            height: 40px;
+            background-image: url("{% static "conference/sdbc.jpg" %}");
+            background-size: cover;
+            background-position: center;
+            margin-right: 4px;
+            border-radius: 50%;
+        }
+        
+        .navbar-toggler {
+            border-color: white;
+        }
+        
+        .navbar-nav .nav-link {
+            color: white;
+            font-size: 16px;
+        }
+        
+        .dropdown-menu {
+            background-color: rgba(9, 9, 95, 0.788);
+        }
+        
+        .dropdown-item {
+            color: white;
+            font-size: 14px;
+        }
+        
+        /* Move the admin login link to the right */
+        .admin-login {
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <div class="navbar-logo"></div>
+                BGI Conference
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="authorDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Author
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="authorDropdown">
+                            <li><a class="dropdown-item" href="/Author/sign-up/">Sign up</a></li>
+                            <li><a class="dropdown-item" href="/Author/sign-in/">Sign in</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="reviewerDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Reviewer
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="reviewerDropdown">
+                            <li><a class="dropdown-item" href="/Reviewer/sign-up/">Sign up</a></li>
+                            <li><a class="dropdown-item" href="/Reviewer/sign-in/">Sign in</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="reviewerDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Conference Admin
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="reviewerDropdown">
+                            <li><a class="dropdown-item" href="/Conference-Admin/sign-up/">Sign up</a></li>
+                            <li><a class="dropdown-item" href="/Conference-Admin/sign-in/">Sign in</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- Move the admin login link to the right -->
+            </div>
+        </div>
+    </nav>
+    <!-- Include Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                
+     <div class="container my-3">
+        <div id="carouselExampleCaptions" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{% static "conference/22.jpg" %}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block" style="color: whitesmoke">
+                        
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static "conference/33.jpg" %}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block" style="color: white;">
+                        
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static "conference/4.jpg" %}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+   <h1 style="text-align: center;">Welcome To SDBC Conference </h1>
+ {% comment %} 
+    <div class="container">
+        <h4 style="text-align: center;" class="my-2 mx-2">The good news is that if you’ve chosen the journal you want to publish in, you’ll have lots of examples already published in that journal to base your own paper on. We’ve gathered advice on every aspect of writing your paper, to make sure you get off to a great start.</h4>
+       
+        
+    </div> {% endcomment %}
+
+    <footer class="text-white text-center my-3 py-3" style="background-color: rgba(9, 9, 95, 0.788); position: relative; bottom: 0; width: 100%;">
+        <div class="container my-2">
+            <p>&copy; 2023 BGI Conference. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Bootstrap JavaScript script tag -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+</body></html>

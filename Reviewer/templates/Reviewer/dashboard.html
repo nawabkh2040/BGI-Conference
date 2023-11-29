@@ -1,0 +1,45 @@
+{% extends 'Reviewer/reviewer-base.html' %}
+{% block title %}Dashboard{% endblock title %}
+{% block body %}
+<body>
+     <div class="container my-4">
+          {% if reviewer %}
+               <h2 class="my-2 text-center">Hello {{ user.name }} !!</h2>
+               <div class="text-center mb-4">
+                    {% comment %} <a href="/Reviewer/profile/" class="btn btn-success">Your Profile</a> {% endcomment %}
+               </div>
+          
+          
+          <table class="table table-bordered">
+               <thead>
+                    <tr>
+                         <th scope="col">S.No</th>
+                         <th scope="col">Papers</th>
+                         <th scope="col">Submitted</th>
+                         <th scope="col">Resubmitted</th>
+                    </tr>
+               </thead>
+               <tbody>
+                    <tr>
+                         <th scope="row">1</th>
+                         <td>Review</td>
+                         <td>
+                              <a href="/reviewer/list-of-submitted-paper/" class="btn btn-success">Submitted Papers</a>
+                         </td>
+                         <td>
+                              <a href="/reviewer/list-of-resubmitted-paper/" class="btn btn-success">Resubmitted Papers</a>
+                         </td>
+                    </tr>
+               </tbody>
+          </table>
+     </div>
+     {% else %}
+               <h2 class="my-2 text-center">Hello {{ user.name }} !!</h2>
+               <h2 class="my-2 text-center">Email {{ user }}</h2>
+               {% if message_error %}
+                    <h4 class="my-4 text-center text-danger">{{ message_error }}</h4>
+                    <p style="text-align: center; color: green;" >You can Contact on conference@sdbc.ac.in</p>
+               {% endif %}
+     {% endif %}
+</body>
+{% endblock body %}

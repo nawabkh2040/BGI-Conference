@@ -1,0 +1,95 @@
+{% extends 'conferenceadmin/conference-base.html' %}
+{% block title %}List of Reviewer {% endblock title %}
+
+{% block body %}
+
+<div class="container">
+    {% if reviewer %}
+    <div class="container my-4">
+        <h2 style="text-align: center;">List of Reviewers</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered mx-auto">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col" style="width: 10%;">Reviewer ID</th>
+                        <th scope="col" style="width: 20%;">Reviewer Name</th>
+                        <th scope="col" style="width: 20%;">Reviewer Email</th>
+                        <th scope="col" style="width: 15%;">Reviewer Contact Number</th>
+                        <th scope="col" style="width: 15%;">View Reviwer Profile</th>
+                        <th scope="col" style="width: 20%;">Make Active</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reviewer in reviewer %}
+                    <tr>
+                        <th scope="row">{{ reviewer.reviewer_id }}</th>
+                        <td>{{ reviewer.user.name }}</td>
+                        <td>{{ reviewer.user.email }}</td>
+                        <td>{{ reviewer.user.number }}</td>
+                        <td>
+                            <a style="text-decoration: none;" href="{% url 'reviewer-profile' reviewer_id=reviewer.user.id %}">
+                                <button class="btn btn-success">View Profile</button>
+                            </a>
+                        </td>
+                        <td>
+                            <select class="form-select activate-dropdown" data-user-id="{{ reviewer.reviewer_id }}">
+                                <option value="false" {% if not reviewer.is_ok %}selected{% endif %}>Deactivate</option>
+                                <option value="true" {% if reviewer.is_ok %}selected{% endif %}>Activate</option>
+                            </select>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Function to retrieve the CSRF token from cookies
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        $('.activate-dropdown').change(function () {
+            var userId = $(this).data('user-id');
+            var value = $(this).val();
+
+            // Get the CSRF token from cookies
+            var csrftoken = getCookie('csrftoken');
+
+            // Perform the AJAX request with the CSRF token in the headers
+            $.ajax({
+                type: 'POST',
+                url: '{% url "list-of-reviewer" %}',
+                headers: { 'X-CSRFToken': csrftoken },
+                data: {
+                    'user_id': userId,
+                    'is_ok': value
+                },
+                success: function (response) {
+                    console.log(response);
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+</script>
+
+{% endblock body %}

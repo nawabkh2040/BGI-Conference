@@ -1,0 +1,48 @@
+{% extends 'Reviewer/reviewer-base.html' %}
+{% block title %}List of Submitted Papers{% endblock title %}
+{% block body %}
+{% if papers %}
+
+<div class="container my-4">
+     <h2 class="text-center">Submitted Papers</h2>
+     <div class="table-responsive">
+         <table class="table table-bordered">
+             <thead class="thead-dark">
+                 <tr>
+                     <th scope="col">Paper Id</th>
+                     <th scope="col">Paper Title</th>
+                     <th scope="col">Auth Name</th>
+                     <th scope="col">Conference Name</th>
+                     <th scope="col">User Email</th>
+                     <th scope="col">Paper Description</th>
+                     <th scope="col">Paper</th>
+                     <th scope="col">Date Of Submit</th>
+                     <th scope="col">Paper Status</th>
+                     <th scope="col">Review Paper</th>
+                 </tr>
+             </thead>
+             <tbody>
+                 {% for papers in papers %}
+                 <tr>
+                     <th scope="row">ABC{{ papers.id|stringformat:"003d" }}</th>
+                     <td>{{ papers.title }}</td>
+                     <td>{{ papers.author_name }}</td>
+                     <td>{{ papers.conference }}</td>
+                     <td>{{ papers.Auth_email }}</td>
+                     <td>{{ papers.paper_description }}</td>
+                     <td><a href="/media/{{ papers.paper_upload }}">Download Paper</a></td>
+                     <td>{{ papers.paper_start_date }}</td>
+                     <td style="text-transform: capitalize;" >{{ papers.status }}</td>
+                     <td><a style="text-decoration: none;color: aliceblue;" href="{% url 'paper_reviewer' paper_id=papers.id %}"><button type="submit" class="btn btn-success">Review Paper</button></a></td>
+                 </tr>
+                 {% endfor %}
+             </tbody>
+         </table>
+     </div>
+</div>
+{% else %}
+    <h3 class="my-4" style="text-align: center; color: rgb(4, 19, 90); " >No Paper is Assing. Please wait Until the paper is Assing </h3>
+{% endif %}
+     
+
+{% endblock body %}

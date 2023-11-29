@@ -1,0 +1,55 @@
+{% extends 'Reviewer/base.html' %}
+
+{% block title %}Sign In{% endblock title %}
+{% block body %}
+
+<div class="container mt-5">
+     <form
+       class="col-10 mx-auto card p-3 shadow-lg"
+       action="/Reviewer/sign-in/"
+       method="post"
+     >
+     <h1 style="text-align: center">Reviewer Sign In</h1>
+     <br>
+     {% if error_message %}
+          <p style="color: rgb(216, 65, 65);" >{{ error_message }}</p>
+     {% endif %}
+     {% if success_message %}
+          <p style="color: rgb(34, 197, 45);" >{{ success_message }}</p>
+     {% endif %}
+       {% csrf_token %}
+       <div class="mb-3">
+         <label for="exampleInputEmail1" class="form-label"
+           >Email address</label
+         >
+         <input
+           type="username"
+           name="email"
+           class="form-control"
+           id="exampleInputEmail1"
+           aria-describedby="emailHelp"
+         />
+         <div id="emailHelp" class="form-text">
+           We'll never share your email with anyone else.
+         </div>
+       </div>
+       <div class="mb-3">
+         <label for="exampleInputPassword1" class="form-label">Password</label>
+         <input
+           type="password"
+           name="password"
+           class="form-control"
+           id="exampleInputPassword1"
+         />
+       </div>
+       <div class="col-auto my-4">
+         <button type="submit" class="btn btn-primary">Sing In</button>
+       </div>
+     </form>
+</div>
+<style>
+  footer{
+    position: absolute;
+  }
+</style>
+{% endblock body %}

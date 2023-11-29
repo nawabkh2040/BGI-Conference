@@ -1,0 +1,39 @@
+{% extends 'conferenceadmin/conference-base.html' %}
+{% block title %}Assing Paper{% endblock title %}
+{% block body %}
+
+<div class="container">
+     {% if reviewer %}
+     <div class="container my-4">
+          <h2 style="text-align: center;">List of Reviewer's</h2>
+          <div class="table-responsive">
+               <table class="table table-bordered mx-auto">
+                    <thead class="thead-dark">
+                    <tr>
+                         <th scope="col" style="width: 20%;" >Reviewer ID</th>
+                         <th scope="col" style="width: 20%;" >Reviewer Name</th>
+                         <th scope="col" style="width: 20%;" >Reviewer Email</th>
+                         <th scope="col" style="width: 20%;" >Reviewer Contact Number</th>
+                         <th scope="col" style="width: 20%;" >Assing Paper</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for reviewer in reviewer %}
+                         <tr>
+                              <th scope="row">{{reviewer.reviewer_id}}</th>
+                              <td>{{reviewer.user.name}}</td>
+                              <td>{{reviewer.email_address}}</td>
+                              <td>{{reviewer.user.number}}</td>
+                              <td><a style="text-decoration: none;color: aliceblue;" href="{% url 'Assign-reviewer-paper' reviewer_id=reviewer.reviewer_id %}"><button type="submit" class="btn btn-success">Assing Paper</button></a></td>
+
+                         </tr>
+                    {% endfor %}
+                    </tbody>
+               </table>
+          </div>
+     </div>
+{% endif %}
+</div>
+
+{% endblock body %}

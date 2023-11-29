@@ -1,0 +1,24 @@
+{% extends 'Author/Author_base.html' %}
+
+{% block title %}{{ conf_instance.conference_name }}{% endblock title %}
+
+
+{% block body %}
+{% if user.is_authenticated %}
+<div class="container my-4">
+     <h1>Conference Title: {{ conf_instance.conference_name }}</h1>
+     <p class="mb-4">Conference ID: {{ conf_instance.conference_id }}</p>
+     <p class="mb-4"><h4>Conference Description:</h4> {{ conf_instance.conference_description }}</p>
+     <p><h5>Start Date:</h5> {{ conf_instance.start_date }}</p>
+     <p><h5>End Date:</h5> {{ conf_instance.end_date }}</p>
+     <div class="mt-4">
+          <a class="btn btn-warning mt-2" href="{% url 'list_of_paper' conf_id=conf_instance.conference_id  %}">Status</a>
+          <a class="btn btn-success mt-2" href="{% url 'submit' conf_id=conf_instance.conference_id %}">Submit Paper</a>
+     </div>
+     <div class="mt-4">
+         <a class="btn btn-secondary" href="/Author/list-of-conference/">Back</a>
+     </div>
+ </div>
+ 
+{% endif %}
+{% endblock body %}

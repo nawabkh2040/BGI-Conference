@@ -1,0 +1,149 @@
+{% extends "Reviewer/base.html" %}
+
+{% block title %}Sign Up {% endblock title %}
+
+{% block body %}
+
+<div class="container mt-5">
+     <form
+       action="/Reviewer/sign-up/"
+       class="col-10 mx-auto card p-3 shadow-lg"
+       method="post"
+       enctype="multipart/form-data"
+       oninput='up2.setCustomValidity(up2.value != password.value ? "Passwords do not match." : "")'
+     >
+       {% csrf_token %} 
+       {% if error_message %}
+       <p style="color: rgb(216, 65, 65)">{{ error_message }}</p>
+       {% endif %}
+       {% if success_message %}
+       <p style="color: rgb(14, 180, 47)">{{ success_message }}</p>
+       {% endif %}
+       <h1 style="text-align: center" class="center">Reviewer Sign up</h1>
+       <div class="mb-3">
+         <label for="exampleInputName" class="form-label">Full Name</label>
+         <input
+           required
+           type="name"
+           name="name"
+           class="form-control"
+           id="exampleInputName"
+           aria-describedby="emailHelp"
+         />
+         <label for="exampleInputName" class="form-label">Highest Qualifications</label>
+         <input
+           required
+           type="text"
+           name="qualification"
+           class="form-control"
+           id="exampleInputName"
+           aria-describedby="emailHelp"
+         />
+         <label for="exampleInputName" class="form-label">Experience </label>
+         <input
+           required
+           type="text"
+           name="experience"
+           class="form-control"
+           id="exampleInputName"
+           aria-describedby="emailHelp"
+         />
+         <label for="exampleInputName" class="form-label">Designations</label>
+         <input
+           required
+           type="text"
+           name="designations"
+           class="form-control"
+           id="exampleInputName"
+           aria-describedby="emailHelp"
+         />
+         <label for="exampleInputName" class="form-label">Organization</label>
+         <input
+           required
+           type="text"
+           name="organization"
+           class="form-control"
+           id="exampleInputName"
+           aria-describedby="emailHelp"
+         />
+         <label for="exampleInputNumber" class="form-label"
+           >Mobile Number</label
+         >
+         <input
+           required
+           type="number"
+           name="number"
+           class="form-control"
+           id="exampleInputNumber"
+           aria-describedby="emailHelp"
+         />
+         <label for="exampleInputNumber" class="form-label"
+           >WhatsApp Number</label
+         >
+         <input
+           required
+           type="number"
+           name="whats_app_number"
+           class="form-control"
+           id="exampleInputNumber"
+           aria-describedby="emailHelp"
+         />
+         <label for="exampleInputEmail1" class="form-label"
+           >Email address</label
+         >
+         <input
+           required
+           type="email"
+           name="email_reviewer"
+           class="form-control"
+           id="exampleInputEmail1"
+           aria-describedby="emailHelp"
+         />
+         <div id="emailHelp" class="form-text">
+           We'll never share your email with anyone else.
+         </div>
+         <div class="form-group">
+           <label for="pwd" class="col-form-label">Password:</label>
+           <input
+             required
+             type="password"
+             class="form-control"
+             id="pwd"
+             name="password_reviewer"
+           />
+         </div>
+         <div class="form-group">
+           <label for="pwd" class="col-form-label">Confirm Password:</label>
+           <input
+             type="password"
+             required
+             class="form-control"
+             id="pwd"
+             name="up2"
+           />
+         </div>
+         <label class="col-form-label my-2 " for="inputGroupFile02">Upload Profile Photo</label>
+         <div class="input-group mb-3 my-2">
+              
+              <input type="file" name="photo_upload" class="form-control" id="inputGroupFile02">
+              
+         </div>
+         <label class="col-form-label my-2 " for="inputGroupFile02">Upload Resume</label>
+         <div class="input-group mb-3 my-2">
+              
+              <input type="file" name="resume_upload" class="form-control" id="inputGroupFile02">
+              
+         </div>
+         <div class="col-auto">
+           <button type="submit" class="btn btn-primary my-3">Submit</button>
+         </div>
+       </div>
+     </form>
+   </div>
+   <style>
+    footer{
+      position: relative;
+    }
+  </style>
+
+{% endblock body %}

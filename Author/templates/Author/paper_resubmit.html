@@ -1,0 +1,54 @@
+{% extends 'Author/Author_base.html' %}
+{% block title %}Resubmit Paper {% endblock title %}
+{% block body %}
+{% if user.is_authenticated %}
+<div class="container my-5">
+        <form action="{% url 'resubmit' paper_id=original_paper.id %}" class="col-10 mx-auto card p-3 shadow-lg"  enctype="multipart/form-data" method="post">
+                {% csrf_token %}
+                {% if error_message %}
+                    <p style="color: rgb(14, 226, 71);">{{ error_message }}</p>
+                {% endif %}
+                {% if success_message %}
+                    <p style="color: rgb(14, 226, 71);">{{ success_message }}</p>
+                {% endif %}
+                {% comment %} <a style="text-decoration: none;" href="{% url 'list_of_paper' conf_id=v1 %}">Back</a> {% endcomment %}
+                <div class="topside">
+                        <center>
+                                <h1 class="text-uppercase">Author {{name}} </h1>
+                                <h4>Here You Can Resubmit Your Paper</h4>
+                        </center>
+                </div>
+                <div class="mb-3">
+                        
+                        <label for="exampleFormControlInput1" class="form-label">Paper Title</label>
+                        <input type="titelbox" name="title_paper" class="form-control" id="exampleFormControlInput1"
+                                placeholder="Enter your paper title">
+                </div>
+                <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Auther Name</label>
+                        <input type="name" name="Auth_name" class="form-control" id="exampleFormControlInput1"
+                                placeholder="Ex:Yashavant Karnetkar">
+                </div>
+                <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Keyword</label>
+                        <input type="text" name="paper_keyword" class="form-control" id="exampleFormControlInput1"
+                >
+                </div>
+                <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Abstract</label>
+                        <textarea name="paper_description" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Whatever you type"></textarea>
+                </div>
+                
+                <div class="input-group mb-3">
+                        <input type="file" name="pdf_upload" class="form-control" id="inputGroupFile02">
+                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                </div>
+                <div class="col-auto">
+                        <button type="submit" class="btn btn-success my-3">Submit</button>
+                        <a class="btn btn-secondary mx-2" href="{% url "list_of_paper" conf_id=conference.conference_id %}">Back</a>
+                </div>
+
+        </form>
+</div>
+{% endif %}
+{% endblock body %}

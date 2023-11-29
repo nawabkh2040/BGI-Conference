@@ -1,0 +1,46 @@
+{% extends 'conferenceadmin/conference-base.html' %}
+
+{% block title %}List of Conferences {% endblock title %}
+
+{% block body %}
+
+{% if conference %}
+<div class="container my-4">
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">S.No</th>
+                    <th scope="col">Conference Name</th>
+                    <th scope="col">Conference Description</th>
+                    <th scope="col">Starting Date</th>
+                    <th scope="col">End Date</th>
+                    <th scope="col">Conference Mode</th>
+                    <th scope="col">Conference Venue</th>
+                    <th scope="col">View Published Papers</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for conf in conference %}
+                    <tr>
+                        <th scope="row">{{ conf.conference_id }}</th>
+                        <td>{{ conf.conference_name }}</td>
+                        <td>{{ conf.conference_description }}</td>
+                        <td>{{ conf.start_date }}</td>
+                        <td>{{ conf.end_date }}</td>
+                        <td>{{ conf.mode }}</td>
+                        <td>{{ conf.venue }}</td>
+                        <td>
+                            <a style="text-decoration: none; color: aliceblue;" href="{% url 'list-of-paper' conference_id=conf.conference_id %}">
+                                <button type="submit" class="btn btn-success">View Papers</button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
+
+{% endblock body %}

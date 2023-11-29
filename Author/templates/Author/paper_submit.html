@@ -1,0 +1,119 @@
+{% extends 'Author/Author_base.html' %}
+{% block title %}Submit Paper{% endblock title %}
+{% block body %}
+
+<body>
+     {% if user.is_authenticated %}
+     <div class="container my-5">
+             <form action"{% url 'submit' conf_id=conf_instance.conference_id %}" enctype="multipart/form-data"  class="col-10 mx-auto card p-3 shadow-lg"
+                     method="post">
+                     {% comment %} enctype="multipart/form-data" {% endcomment %}
+                      {% csrf_token %}
+                     {% if error_message %} 
+                      <p style="color: rgb(14, 226, 71);">{{ error_message }}</p> 
+                      {% endif %} 
+                    {% if success_message %}
+                         <p style="color: rgb(10, 205, 75);" >{{ success_message }}</p>
+                    {% endif %}
+                     <div class="topside">
+                             <center>
+                                     <h1 class="text-uppercase">WellCome {{uname}} </h1>
+                             </center>
+                     </div>
+                     <div class="mb-3">
+                             <h4 style="text-decoration: underline;">Main Author</h4>
+                             <label for="exampleFormControlInput1" class="form-label">Paper Title</label>
+                             <input type="titelbox" name="title_paper" class="form-control"
+                                     id="exampleFormControlInput1" placeholder="Enter your paper title">
+                     </div>
+                     <div class="mb-3">
+                             <label for="exampleFormControlInput1" class="form-label">Author Name</label>
+                             <input type="name" name="Auth_name" class="form-control" id="exampleFormControlInput1"
+                                     placeholder="Ex:Yashavant Karnetkar">
+                     </div>
+
+                     <div class="mb-3">
+                             <label for="exampleFormControlInput1" class="form-label">Author Email</label>
+                             <input type="name" name="Auth_email" class="form-control" id="exampleFormControlInput1"
+                                     placeholder="Ex:abc@gmail.com">
+                     </div>
+                     <div class="mb-3">
+                             <label for="exampleFormControlInput1" class="form-label">Author Affiliation</label>
+                             <input type="name" name="Auth_affiliation" class="form-control" id="exampleFormControlInput1"
+                                     >
+                     </div>
+                     <div class="mb-3">
+                             <label for="exampleFormControlInput1" class="form-label">Author Mobile No.</label>
+                             <input type="number" name="Auth_mobile" class="form-control" id="exampleFormControlInput1"
+                                     >
+                     </div>
+                     <h4 style="text-decoration: underline;">Corresponding Author</h4>
+                     <div class="mb-3">
+                             <label for="exampleFormControlInput1" class="form-label">Corresponding Author Name</label>
+                             <input type="name" name="corresponding_auth_name" class="form-control" id="exampleFormControlInput1"
+                                     placeholder="Ex:Yashavant Karnetkar">
+                     </div>
+
+                     <div class="mb-3">
+                             <label for="exampleFormControlInput1" class="form-label">Corresponding Author Email</label>
+                             <input type="name" name="corresponding_auth_email" class="form-control" id="exampleFormControlInput1"
+                                     placeholder="Ex:abc@gmail.com">
+                     </div>
+                     <div class="mb-3">
+                             <label for="exampleFormControlInput1" class="form-label">Corresponding Author Affiliation</label>
+                             <input type="name" name="corresponding_auth_affiliation" class="form-control" id="exampleFormControlInput1"
+                                     >
+                     </div>
+                     <div class="mb-3">
+                             <label for="exampleFormControlInput1" class="form-label">Corresponding Author Mobile No.</label>
+                             <input type="number" name="corresponding_auth_mobile" class="form-control" id="exampleFormControlInput1"
+                                     >
+                     </div>
+                     
+                     <h4 style="text-decoration: underline;">Other Author's Details</h4>
+                     <div class="mb-3">
+                             <label for="exampleFormControlInput1" class="form-label">Author's Name</label>
+                             <input type="name" name="other_auth_name" class="form-control" id="exampleFormControlInput1"
+                                     placeholder="Ex:firstAuthorName , secondAuthorName , thirdAuthorName...">
+                     </div>
+
+                     <div class="mb-3">
+                             <label for="exampleFormControlInput1" class="form-label">Author's Email</label>
+                             <input type="name" name="other_auth_email" class="form-control" id="exampleFormControlInput1"
+                                     placeholder="Ex:abc@gmail.com , def@gmail.com , ghi@gmail.com...">
+                     </div>
+                     <div class="mb-3">
+                             <label for="exampleFormControlInput1" class="form-label">Author's Affiliation</label>
+                             <input type="name" name="other_auth_affiliation" class="form-control" id="exampleFormControlInput1"
+                                     >
+                     </div>
+                     <div class="mb-3">
+                             <label for="exampleFormControlInput1" class="form-label">Author's Mobile No.</label>
+                             <input type="number" name="other_auth_mobile" class="form-control" id="exampleFormControlInput1"
+                     >
+                     </div>
+                     <h4 style="text-decoration: underline;">Paper's Details</h4>
+                     <div class="mb-3">
+                             <label for="exampleFormControlInput1" class="form-label">Keyword</label>
+                             <input type="text" name="paper_keyword" class="form-control" id="exampleFormControlInput1"
+                     >
+                     </div>
+                     <div class="mb-3">
+                             <label for="exampleFormControlInput1" class="form-label">Abstract</label>
+                             <input type="text" name="paper_description" class="form-control" id="exampleFormControlInput1"
+                     >
+                     </div>
+                     <div class="input-group mb-3">
+                        <input type="file" name="pdf_upload" class="form-control" id="inputGroupFile02">
+
+                      </div>
+                     <div class="col-auto">
+                             <button type="submit" class="btn btn-success my-3">Submit</button>
+                             <a class="btn btn-secondary mx-2" href="/Author/dashboard">Back</a>
+                     </div>
+
+             </form>
+     </div>
+     {% endif %}
+
+{% endblock body %}

@@ -1,0 +1,9 @@
+{% autoescape off %}
+     WellCome To  Conference
+
+     Hello {{name}} !!
+     
+     Thank you for Registering in our conference As a Author. Please click on the link below to confirm your email address and activate your account:
+
+     Confirmation link :- http://{{domain}}{% url 'activate' uidb64=uidb64 token=token %}
+{% endautoescape %}

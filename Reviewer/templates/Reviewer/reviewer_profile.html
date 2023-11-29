@@ -1,0 +1,59 @@
+{% extends 'Reviewer/reviewer-base.html' %}
+
+{% block title %}
+    Reviewer Profile
+{% endblock title %}
+
+{% block body %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="row g-0">
+                    <div class="col-md-4 profile-img-container">
+                        <img src="{{ reviewer.profile_photo.url }}" class="card-img rounded-circle profile-img" alt="Reviewer Photo">  
+                        <h4 class="profile-name">{{ reviewer.reviewer_name }}</h4>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h4 class="profile-name-profile">Name: {{ reviewer.user.name }}</h4>
+                            <p class="card-text"><strong>Highest Qualification:</strong> {{ reviewer.highest_qualifications }}</p>
+                            <p class="card-text"><strong>Experience:</strong> {{ reviewer.experience }}</p>
+                            <p class="card-text"><strong>Designations:</strong> {{ reviewer.designations }}</p>
+                            <p class="card-text"><strong>Organization:</strong> {{ reviewer.organization }}</p>
+                            <p class="card-text"><strong>Email:</strong> {{ reviewer.email_address }}</p>
+                            <p class="card-text"><strong>Reviewer Number:</strong> {{ reviewer.user.number }}</p>
+                            <p class="card-text"><strong>WhatsApp Number:</strong> {{ reviewer.whatsapp_number }}</p>
+                            <a href="{{ reviewer.resume_upload.url }}" class="btn btn-primary">Download Resume</a>
+                            <a href="/reviewer/dashboard/" class="btn btn-dark">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .profile-img-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        background-color: #f8f9fa;
+        padding: 20px;
+    }
+
+    .profile-img {
+        width: 160px;
+        height: 160px;
+        object-fit: cover;
+    }
+
+    .profile-name {
+        margin-top: 10px;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+</style>
+{% endblock body %}
